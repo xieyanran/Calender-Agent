@@ -1,0 +1,37 @@
+# Which Google Calendar to write into. Recommended: create a dedicated
+# calendar (not your main one) so it's safe to wipe/resync.
+google_calendar:
+  calendar_id: "af3fbb80db260fa858b49d48f75464a05e2957372953b27cff087fcadb372960@group.calendar.google.com"
+  # Produced by `python -m src.auth_setup` (see README) -- an OAuth refresh
+  # token, not a service-account key (Chalmers' org blocks creating those).
+  token_file: "token.json"
+
+# Popup reminder lead times per event category, in minutes before start.
+# Empty list = no extra reminder for that category.
+reminders_minutes_before:
+  assignment: [4320, 1440] # Canvas deadlines: 3 days + 1 day before
+  registration: [10080, 1440] # Ladok registration deadlines: 7 days + 1 day before
+  exam: [10080, 1440] # Exams: 7 days + 1 day before
+  class: [] # TimeEdit lectures/etc: no extra popup
+
+canvas:
+  # Name of the env var (and GitHub Actions secret) holding your Canvas
+  # calendar feed ICS URL. Find it on the Canvas Calendar page -> "Calendar
+  # Feed" link at the bottom.
+  ics_url_env: "CANVAS_ICS_URL"
+
+timeedit:
+  # Name of the env var holding your TimeEdit *subscription* ICS URL (must
+  # be fetchable via plain HTTP GET, not a one-off manual download).
+  ics_url_env: "TIMEEDIT_ICS_URL"
+  # Swedish -> English overrides/additions on top of the defaults in
+  # src/normalize.py. Add terms here as you see ones the defaults miss --
+  # e.g. course names, which aren't in any fixed vocabulary. These two are
+  # filled in from your real feed; add more as new courses show up.
+  translations:
+    Djup maskininlärning: Deep Machine Learning
+    Etisk hackning och penetrationstestning: Ethical Hacking and Penetration Testing
+
+ladok:
+  # Not wired up yet -- see src/sources/ladok.py.
+  enabled: false

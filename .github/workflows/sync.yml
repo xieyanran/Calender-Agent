@@ -1,0 +1,23 @@
+name: Sync calendars
+
+on:
+  schedule:
+    - cron: "0 */4 * * *" # every 4 hours; adjust as you like
+  workflow_dispatch: {} # lets you trigger a run manually from the Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Sync
+        env:
+          CANVAS_ICS_URL: ${{ secrets.CANVAS_ICS_URL }}
+          TIMEEDIT_ICS_URL: ${{ secrets.TIMEEDIT_ICS_URL }}
+        run: |
+          echo '${{ secrets.GOOGLE_TOKEN_JSON }}' > token.json
+          python -m src.main
