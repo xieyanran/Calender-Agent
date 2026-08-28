@@ -1,9 +1,14 @@
 # Which Google Calendar to write into. Recommended: create a dedicated
 # calendar (not your main one) so it's safe to wipe/resync.
 google_calendar:
-  calendar_id: "af3fbb80db260fa858b49d48f75464a05e2957372953b27cff087fcadb372960@group.calendar.google.com"
+  # Set via the GOOGLE_CALENDAR_ID env var instead (see .env.example) --
+  # this is a per-person value, so it doesn't belong in tracked config.
+  # This placeholder is only a fallback for `calendar_id_env` being unset.
+  calendar_id: ""
+  calendar_id_env: "GOOGLE_CALENDAR_ID"
   # Produced by `python -m src.auth_setup` (see README) -- an OAuth refresh
-  # token, not a service-account key (Chalmers' org blocks creating those).
+  # token, not a service-account key (Google now blocks creating those by
+  # default on new GCP projects).
   token_file: "token.json"
 
 # Popup reminder lead times per event category, in minutes before start.
@@ -26,8 +31,9 @@ timeedit:
   ics_url_env: "TIMEEDIT_ICS_URL"
   # Swedish -> English overrides/additions on top of the defaults in
   # src/normalize.py. Add terms here as you see ones the defaults miss --
-  # e.g. course names, which aren't in any fixed vocabulary. These two are
-  # filled in from your real feed; add more as new courses show up.
+  # e.g. course names, which aren't in any fixed vocabulary. The two below
+  # are just a worked example (real Chalmers courses) -- replace with your
+  # own once you've run --dry-run against your own feed.
   translations:
     Djup maskininlärning: Deep Machine Learning
     Etisk hackning och penetrationstestning: Ethical Hacking and Penetration Testing

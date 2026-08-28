@@ -75,10 +75,20 @@ def main() -> None:
         "GOOGLE_TOKEN_FILE",
         config["google_calendar"].get("token_file", "token.json"),
     )
+    calendar_id = os.environ.get(
+        config["google_calendar"].get("calendar_id_env", "GOOGLE_CALENDAR_ID"),
+        config["google_calendar"].get("calendar_id"),
+    )
+    if not calendar_id:
+        raise SystemExit(
+            "No calendar ID set -- put it in the GOOGLE_CALENDAR_ID env var "
+            "(see .env.example) or config.yaml's google_calendar.calendar_id."
+        )
+
     service = get_service(token_file)
     stats = sync_events(
         service,
-        config["google_calendar"]["calendar_id"],
+        calendar_id,
         events,
         config["reminders_minutes_before"],
     )

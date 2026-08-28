@@ -18,6 +18,7 @@ jobs:
         env:
           CANVAS_ICS_URL: ${{ secrets.CANVAS_ICS_URL }}
           TIMEEDIT_ICS_URL: ${{ secrets.TIMEEDIT_ICS_URL }}
+          GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
         run: |
           echo '${{ secrets.GOOGLE_TOKEN_JSON }}' > token.json
           python -m src.main
