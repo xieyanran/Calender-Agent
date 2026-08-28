@@ -2,15 +2,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-If you're at Chalmers, your term is scattered across three systems: Canvas
-(assignment deadlines), TimeEdit (the actual class schedule, in Swedish,
-full of fields you don't need), and Ladok (course/exam/re-exam
-registration). This pulls the first two into a single Google Calendar on a
-schedule, translating and trimming TimeEdit's noisy Swedish entries along
-the way. Ladok isn't wired up yet -- see `src/sources/ladok.py` for why.
-
-Deliberately not an LLM agent: it's a plain fetch -> normalize -> upsert
-sync script, run on a schedule. Deterministic and easy to debug.
+Syncs a Chalmers student's scattered schedule -- Canvas assignment
+deadlines and TimeEdit's class schedule (translated out of Swedish,
+stripped of noise) -- into one Google Calendar that stays in sync rather
+than re-importing from scratch each run. 
 
 Built against and tested on Chalmers' actual Canvas/TimeEdit feeds -- other
 schools' TimeEdit instances format fields differently (`src/sources/timeedit.py`'s
