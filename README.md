@@ -6,18 +6,19 @@ One Google Calendar that always matches your real schedule -- no more
 checking Canvas and TimeEdit separately, or re-subscribing every term when
 Google Calendar's own ICS import goes stale.
 
-This pulls Canvas assignment deadlines and TimeEdit's class schedule
-(translated out of Swedish, stripped of noise) into a single calendar, and
-updates it incrementally on every run instead of wiping and re-importing
-from scratch.
-
 ## Setup
 
-1. **Canvas**: on the Canvas Calendar page, find the "Calendar Feed" link
-   (bottom of the page) and copy its ICS URL.
-2. **TimeEdit**: find the "Subscribe"/"Prenumerera" ICS link (not the
-   one-off download button) -- it needs to be fetchable with a plain HTTP
-   GET.
+1. **Canvas**: on the Canvas Calendar page, open the sidebar's "Calendar
+   feed" link (bottom right, under the calendar list) and copy its ICS URL.
+
+   ![Canvas calendar feed link](docs/canvas-calendar-feed.png)
+
+2. **TimeEdit**: click **Prenumerera** ("Subscribe") and copy the ICS link
+   from there -- not the one-off download button, since it needs to be
+   fetchable with a plain HTTP GET.
+
+   ![TimeEdit subscribe dialog](docs/timeedit-subscribe.png)
+
 3. **Google Calendar**:
    - Create a dedicated calendar for this (Settings -> "Create new
      calendar"), so it's safe to wipe/resync without touching your main
