@@ -1,26 +1,15 @@
-# Calender-Agent
+# Chalmers Calendar Sync
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Syncs a Chalmers student's scattered schedule -- Canvas assignment
-deadlines and TimeEdit's class schedule (translated out of Swedish,
-stripped of noise) -- into one Google Calendar that stays in sync rather
-than re-importing from scratch each run. 
+One Google Calendar that always matches your real schedule -- no more
+checking Canvas and TimeEdit separately, or re-subscribing every term when
+Google Calendar's own ICS import goes stale.
 
-Built against and tested on Chalmers' actual Canvas/TimeEdit feeds -- other
-schools' TimeEdit instances format fields differently (`src/sources/timeedit.py`'s
-`_parse_summary`/`_parse_location` will likely need adjusting), so treat
-this as a working reference rather than something that'll run unmodified
-elsewhere.
-
-## How it works
-
-- `src/sources/canvas.py` / `src/sources/timeedit.py` fetch each source's
-  ICS feed and turn it into a list of `Event`s (`src/normalize.py`).
-- `src/calendar_sync.py` upserts those events into a Google Calendar. Every
-  event it writes carries a stable `sourceUid` in `extendedProperties`, so
-  re-running the sync updates/deletes instead of duplicating.
-- `src/main.py` wires it together and is what actually runs.
+This pulls Canvas assignment deadlines and TimeEdit's class schedule
+(translated out of Swedish, stripped of noise) into a single calendar, and
+updates it incrementally on every run instead of wiping and re-importing
+from scratch.
 
 ## Setup
 
@@ -87,13 +76,3 @@ scheduled use, only from long inactivity (~6 months) or if you revoke it
 yourself (myaccount.google.com/permissions) -- if that happens, just re-run
 `src/auth_setup.py` locally and update the secret.
 
-## Ladok
-
-Not implemented. `ladok3` (the only real open-source Python wrapper) turns
-out to be built for staff reporting grades, not for a student reading their
-own registration/exam-registration deadlines -- see the docstring in
-`src/sources/ladok.py` for what was checked and what to try next.
-
-## License
-
-[MIT](LICENSE)

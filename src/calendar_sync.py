@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # their own account, there's no separate "share the calendar" step needed.
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 MANAGED_BY_KEY = "managedBy"
-MANAGED_BY_VALUE = "calender-agent"
+MANAGED_BY_VALUE = "chalmers-calendar-sync"
 SOURCE_UID_KEY = "sourceUid"
 
 
