@@ -66,14 +66,18 @@ show up (there's no general Swedish translator, just a fixed dictionary).
 ## Automation
 
 `.github/workflows/sync.yml` runs the sync every 4 hours via GitHub
-Actions. Add these as repo secrets (Settings -> Secrets and variables ->
-Actions): `CANVAS_ICS_URL`, `TIMEEDIT_ICS_URL`, `GOOGLE_CALENDAR_ID`, and
-`GOOGLE_TOKEN_JSON` (the full contents of the `token.json` that
-`src/auth_setup.py` produced locally). Repo secrets aren't readable by
-anyone even on a public repo, but the ICS URLs and token effectively act as
-bearer credentials to your school accounts and calendar -- don't paste them
-anywhere else. The refresh token in `token.json` doesn't expire from
-scheduled use, only from long inactivity (~6 months) or if you revoke it
-yourself (myaccount.google.com/permissions) -- if that happens, just re-run
+Actions. In the repo, go to **Settings -> Secrets and variables ->
+Actions** and add these repo secrets:
+
+- `CANVAS_ICS_URL` -- the Canvas ICS URL from step 1
+- `TIMEEDIT_ICS_URL` -- the TimeEdit ICS URL from step 2
+- `GOOGLE_CALENDAR_ID` -- the same value you put in `.env`
+- `GOOGLE_TOKEN_JSON` -- the full contents of the `token.json` that
+  `src/auth_setup.py` produced locally
+
+
+The refresh token in `token.json` doesn't expire from scheduled use, only
+from long inactivity (~6 months) or if you revoke it yourself
+(myaccount.google.com/permissions). If that happens, just re-run
 `src/auth_setup.py` locally and update the secret.
 
