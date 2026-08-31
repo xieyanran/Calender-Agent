@@ -1,4 +1,4 @@
-# Chalmers Calendar Sync
+# 📅 Chalmers Calendar Sync
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -6,7 +6,7 @@ One Google Calendar that always matches your real schedule -- no more
 checking Canvas and TimeEdit separately, or re-subscribing every term when
 Google Calendar's own ICS import goes stale.
 
-## Setup
+## 🛠️ Setup
 
 1. **Canvas**: on the Canvas Calendar page, open the sidebar's "Calendar
    feed" link (bottom right, under the calendar list) and copy its ICS URL.
@@ -47,7 +47,7 @@ Google Calendar's own ICS import goes stale.
    same variables in your shell.
 5. `pip install -r requirements.txt`
 
-## Running
+## ▶️ Running
 
 ```bash
 # Fetch + normalize + print, writes nothing:
@@ -63,7 +63,7 @@ was written against Chalmers' actual TimeEdit field layout but course
 names still need adding to `config.yaml`'s `timeedit.translations` as they
 show up (there's no general Swedish translator, just a fixed dictionary).
 
-## Automation
+## 🤖 Automation
 
 `.github/workflows/sync.yml` runs the sync every 4 hours via GitHub
 Actions. In the repo, go to **Settings -> Secrets and variables ->
